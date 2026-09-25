@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "runs": [
+    {
+      "runId": "workflow-adoption-publish-20260925",
+      "recordPath": "planning/workflow-runs/workflow-adoption-publish-20260925/run.md",
+      "status": "running",
+      "goalRevision": 1,
+      "goalKeys": [
+        "indie-game-workflow-adoption",
+        "commit-push"
+      ],
+      "targetPaths": [
+        ".gitattributes",
+        ".agents/skills",
+        "AGENTS.md",
+        "planning/game-workflow-profile.md",
+        "planning/workflow-runs"
+      ],
+      "conversationKey": null
+    }
+  ]
+}

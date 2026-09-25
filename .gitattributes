@@ -1,0 +1,4 @@
+# Preserve the byte identity of the content-locked workflow bundle.
+.agents/skills/*/** -text
+.agents/skills/game-ui-art-direction/assets/sample-library/** -text -whitespace
+.agents/skills/indie-game-workflow.lock.json -text

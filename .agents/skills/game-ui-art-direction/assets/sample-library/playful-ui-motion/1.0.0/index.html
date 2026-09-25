@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playful UI motion languages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <div>
+        <span class="eyebrow">PORTABLE MOTION SAMPLE · IMMUTABLE SEED 1.0.0</span>
+        <h1>Playful motion for modest game graphics</h1>
+        <p><b>Immediate input, a clear secondary echo, and a finite settle.</b></p>
+      </div>
+      <label class="reduce-toggle"><input id="reduce-motion" type="checkbox"><span>Reduced motion</span></label>
+    </header>
+
+    <section class="comparison" aria-label="Playful UI motion language candidates">
+      <figure class="candidate toy" data-candidate="toy-cockpit@4" data-motion="mechanical">
+        <div class="candidate-head">
+          <div><span class="option">A</span><h2>Mechanical</h2></div>
+          <p>Signal idle · 3px lift hover · crisp press</p>
+          <em>Balanced default</em>
+        </div>
+        <div class="stage">
+          <div class="console-shell">
+            <div class="console-top"><span class="lamp" aria-hidden="true"></span><span>CONTROL DECK</span><small>READY</small></div>
+            <div class="track">
+              <span class="rail" aria-hidden="true"></span>
+              <div class="block-slot">
+                <div class="block-visual">
+                  <span class="block-shadow" aria-hidden="true"></span>
+                  <span class="block-face"><b>01</b><span>OPTION</span><small>VALUE 45</small></span>
+                  <span class="block-outline" aria-hidden="true"></span>
+                  <span class="block-echo" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="console-bottom">
+              <div class="status-wrap"><span class="status-chip"><b>✓</b> CONFIRMED</span></div>
+              <button class="action" type="button" aria-label="Mechanical action motion">
+                <span class="button-visual"><span class="button-shadow" aria-hidden="true"></span><span class="button-face">ACTION</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="controls" aria-label="Mechanical motion controls">
+          <button data-play="all">Full flow</button><button data-play="idle">idle</button><button data-play="hover">hover</button><button data-play="button">Press</button><button data-play="block">Item</button><button data-play="success">Success</button>
+        </div>
+        <output>Ready</output>
+      </figure>
+
+      <figure class="candidate jelly" data-candidate="jelly-engine@4" data-motion="elastic">
+        <div class="candidate-head">
+          <div><span class="option">B</span><h2>Elastic</h2></div>
+          <p>Breathing idle · 2.5% inflate hover · elastic recoil</p>
+          <em>Action and reward</em>
+        </div>
+        <div class="stage">
+          <div class="console-shell">
+            <div class="console-top"><span class="lamp" aria-hidden="true"></span><span>CONTROL DECK</span><small>READY</small></div>
+            <div class="track">
+              <span class="rail" aria-hidden="true"></span>
+              <div class="block-slot">
+                <div class="block-visual">
+                  <span class="block-shadow" aria-hidden="true"></span>
+                  <span class="block-face"><b>01</b><span>OPTION</span><small>VALUE 45</small></span>
+                  <span class="block-outline" aria-hidden="true"></span>
+                  <span class="block-echo" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="console-bottom">
+              <div class="status-wrap"><span class="status-chip"><b>✓</b> CONFIRMED</span></div>
+              <button class="action" type="button" aria-label="Elastic action motion">
+                <span class="button-visual"><span class="button-shadow" aria-hidden="true"></span><span class="button-face">ACTION</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="controls" aria-label="Elastic motion controls">
+          <button data-play="all">Full flow</button><button data-play="idle">idle</button><button data-play="hover">hover</button><button data-play="button">Press</button><button data-play="block">Item</button><button data-play="success">Success</button>
+        </div>
+        <output>Ready</output>
+      </figure>
+
+      <figure class="candidate sticker" data-candidate="sticker-pop@4" data-motion="sticker">
+        <div class="candidate-head">
+          <div><span class="option">C</span><h2>Sticker</h2></div>
+          <p>Paper idle · 0.9deg tilt hover · item-only outline echo</p>
+          <em>Items and cards</em>
+        </div>
+        <div class="stage">
+          <div class="console-shell">
+            <div class="console-top"><span class="lamp" aria-hidden="true"></span><span>CONTROL DECK</span><small>READY</small></div>
+            <div class="track">
+              <span class="rail" aria-hidden="true"></span>
+              <div class="block-slot">
+                <div class="block-visual">
+                  <span class="block-shadow" aria-hidden="true"></span>
+                  <span class="block-face"><b>01</b><span>OPTION</span><small>VALUE 45</small></span>
+                  <span class="block-outline" aria-hidden="true"></span>
+                  <span class="block-echo" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="console-bottom">
+              <div class="status-wrap"><span class="status-chip"><b>✓</b> CONFIRMED</span></div>
+              <button class="action" type="button" aria-label="Sticker action motion">
+                <span class="button-visual"><span class="button-shadow" aria-hidden="true"></span><span class="button-face">ACTION</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="controls" aria-label="Sticker motion controls">
+          <button data-play="all">Full flow</button><button data-play="idle">idle</button><button data-play="hover">hover</button><button data-play="button">Press</button><button data-play="block">Item</button><button data-play="success">Success</button>
+        </div>
+        <output>Ready</output>
+      </figure>
+    </section>
+
+    <aside class="notes">
+      <span><b>States:</b> borderless action · idle &lt; hover &lt; press/event · finite return</span>
+      <span><b>Try it:</b> hover the action and item, then replay each state or the full flow.</span>
+    </aside>
+    <footer>Portable comparison sample. It is not a product component, engine implementation, or runtime acceptance result.</footer>
+  </main>
+  <script src="motion.js"></script>
+</body>
+</html>

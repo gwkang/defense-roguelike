@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/game-ui-component-catalog.schema.json",
+  "title": "Portable game UI component catalog",
+  "type": "object",
+  "required": ["catalogVersion", "artifactFingerprint", "profileFingerprint", "components"],
+  "additionalProperties": false,
+  "properties": {
+    "catalogVersion": {"type": "string", "minLength": 1},
+    "artifactFingerprint": {"type": "string", "minLength": 1},
+    "profileFingerprint": {"type": "string", "minLength": 1},
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/component"}
+    }
+  },
+  "$defs": {
+    "authority": {
+      "type": "object",
+      "required": ["ref", "status", "fingerprint"],
+      "additionalProperties": false,
+      "properties": {
+        "ref": {"type": "string", "minLength": 1},
+        "status": {"enum": ["current", "supporting", "superseded", "conflicting", "open", "blocked"]},
+        "fingerprint": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["capability", "coverage"],
+      "additionalProperties": false,
+      "properties": {
+        "capability": {"type": "string", "minLength": 1},
+        "coverage": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "toleranceRef": {"type": "string", "minLength": 1}
+      }
+    },
+    "approval": {
+      "type": "object",
+      "required": ["status", "artifactFingerprint"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["draft", "approved", "rejected", "blocked"]},
+        "artifactFingerprint": {"type": "string", "minLength": 1},
+        "authorityRef": {"type": "string", "minLength": 1}
+      },
+      "allOf": [{
+        "if": {"properties": {"status": {"const": "approved"}}},
+        "then": {"required": ["authorityRef"]}
+      }]
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "componentId",
+        "version",
+        "kind",
+        "variants",
+        "authorities",
+        "structure",
+        "allowedInputs",
+        "protectedProperties",
+        "states",
+        "accessibility",
+        "adapter",
+        "evidence",
+        "consumers",
+        "exceptions",
+        "approval"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "kind": {
+          "enum": ["raster", "vector", "code-native", "native-widget", "mixed"]
+        },
+        "variants": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "authorities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/authority"},
+          "uniqueItems": true
+        },
+        "structure": {
+          "type": "object",
+          "required": ["capability", "spec"],
+          "additionalProperties": false,
+          "properties": {
+            "capability": {"type": "string", "minLength": 1},
+            "spec": {"type": "object", "minProperties": 1}
+          }
+        },
+        "allowedInputs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "protectedProperties": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "accessibility": {"type": "object"},
+        "adapter": {
+          "type": "object",
+          "required": ["id", "fallbackOwner"],
+          "additionalProperties": false,
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "fallbackOwner": {"type": "string", "minLength": 1}
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "consumers": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "approval": {"$ref": "#/$defs/approval"}
+      }
+    }
+  }
+}

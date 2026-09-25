@@ -1,0 +1,1437 @@
+{
+  "schemaVersion": 1,
+  "libraryId": "workflow-ui-samples",
+  "libraryVersion": "1.2.0",
+  "entries": [
+    {
+      "sampleId": "square-motion-snap",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "snap",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating snap; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"snap\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "snap@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-cute",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "cute",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating cute; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"cute\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "cute@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-breathe",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "breathe",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating breathe; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"breathe\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "breathe@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-sway",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "sway",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating sway; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"sway\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "sway@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-spring",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "spring",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating spring; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"spring\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "spring@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-press",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "press",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating press; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"press\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "press@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-slide",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "slide",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating slide; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"slide\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "slide@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-flip",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "flip",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating flip; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"flip\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "flip@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-shake",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "shake",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating shake; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"shake\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "shake@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "square-motion-float",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "float",
+        "square",
+        "no-particles",
+        "one-page"
+      ],
+      "description": "One unchanged square demonstrating float; motion study, not a project component.",
+      "previewPath": "square-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"float\"]",
+      "sourceFiles": {
+        "square-motion/1.0.0/index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+        "square-motion/1.0.0/motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+        "square-motion/1.0.0/gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+        "square-motion/1.0.0/style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+        "square-motion/1.0.0/tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+      },
+      "dependencies": {
+        "runtime": [
+          "Canvas2D",
+          "JavaScript",
+          "CSS",
+          "PNG"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "logicalStage": [
+          720,
+          480
+        ],
+        "assetSize": [
+          128,
+          128
+        ],
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "cycleSeconds": 2.8,
+        "background": "#232526"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Any changed source needs a project-local variant; no silent in-place edit."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native Canvas2D",
+          "Python Pillow for tile"
+        ],
+        "originCandidate": "float@1",
+        "originManifestSHA256": "f35b510626fe7e05449847705c0fd5efe86d78551e846131f2948f719da6a965",
+        "parent": null,
+        "originalSourceHashes": {
+          "index.html": "cada758d3e577244f9b2859fe216ba58d31aa3a8d0ff05db566ddd3c6d2a4671",
+          "motion.js": "4a6d8391c83f6f0b8c2572e7de7dc56ee078efffeb858731faf3de99187a567b",
+          "gallery.js": "1d27e8fcaa72a3f31cffe1a748666b74e78ccc2920cc7569661563c726419e46",
+          "style.css": "d9b4ae3937190795e7bdbccaddeb644fda829a75fd5d29d5b826e610146f6957",
+          "tile.png": "bdd1e3131d11e1a4d41884022e2a36d90d3b8dd7a486fcc8acd31ec99e0c09cd"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored code and geometric tile; project owner explicitly authorized cross-project workflow reuse (D38).",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a3eebd919c1bf36aff55be8adce6261d2a5d5b66cf41cad630673b6aa1e187a8",
+        "sourceFingerprint": "0f6c784a55a1ba835dfb635900ff52a5e4e4fca2e4acd3e02f7b65ab62eb79f7",
+        "environment": "Chrome Canvas2D; 1280x720; original source playback and individual replay independently observed",
+        "limits": "Project fit, user selection, template approval and product runtime remain separate."
+      }
+    },
+    {
+      "sampleId": "button-shape-square-flat",
+      "version": "1.0.0",
+      "kind": "button-shape",
+      "tags": [
+        "button",
+        "shape",
+        "square-flat",
+        "static"
+      ],
+      "description": "Same button label and size; contour/depth comparison, not a product control.",
+      "previewPath": "button-shapes/1.0.0/index.html",
+      "candidateSelector": "#B01",
+      "sourceFiles": {
+        "button-shapes/1.0.0/index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+        "button-shapes/1.0.0/style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+        "button-shapes/1.0.0/B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+        "button-shapes/1.0.0/B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+        "button-shapes/1.0.0/B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+        "button-shapes/1.0.0/B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+      },
+      "dependencies": {
+        "runtime": [
+          "SVG",
+          "CSS",
+          "HTML native buttons",
+          "Installed Malgun Gothic for verified Windows typography; sans-serif fallback outside verified environment"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "sampleSize": [
+          320,
+          104
+        ],
+        "faceSize": [
+          280,
+          72
+        ],
+        "label": "실행",
+        "background": "#252725",
+        "locale": "ko",
+        "font": "Malgun Gothic (not bundled)"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed; create a project-local variant for an actual missing axis."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native SVG",
+          "CSS",
+          "HTML"
+        ],
+        "originCandidate": "B01@1",
+        "originManifestSHA256": "53ace066acf7a6bd8af1d7584e31f59a172cb674803cc2bce7b3f21d76858071",
+        "originalSourceHashes": {
+          "index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+          "style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+          "B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+          "B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+          "B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+          "B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored geometric SVG/CSS/HTML; D38 authorizes cross-project sample reuse; U7-B source independently reviewed.",
+        "externalElements": [],
+        "limitations": "No font files distributed. Installed Windows font name only; other OS rendering unverified. No public license or product approval is granted."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a42e53c95f0389f1ffe12fbf08b5e0376c7ebb4d7ab212809175917a464256f6",
+        "sourceFingerprint": "30aa552dc247e3071bac79a2450580a03ccb6a9a22bee4dec1ae1f615b8d499c",
+        "environment": "U7-B independent Chrome 1280x720 SVG4 review; exact runtime bytes retained.",
+        "limits": "Static comparison and input/release smoke; held-press intermediate frame unobserved; no product runtime verdict."
+      }
+    },
+    {
+      "sampleId": "button-shape-round-flat",
+      "version": "1.0.0",
+      "kind": "button-shape",
+      "tags": [
+        "button",
+        "shape",
+        "round-flat",
+        "static"
+      ],
+      "description": "Same button label and size; contour/depth comparison, not a product control.",
+      "previewPath": "button-shapes/1.0.0/index.html",
+      "candidateSelector": "#B02",
+      "sourceFiles": {
+        "button-shapes/1.0.0/index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+        "button-shapes/1.0.0/style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+        "button-shapes/1.0.0/B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+        "button-shapes/1.0.0/B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+        "button-shapes/1.0.0/B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+        "button-shapes/1.0.0/B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+      },
+      "dependencies": {
+        "runtime": [
+          "SVG",
+          "CSS",
+          "HTML native buttons",
+          "Installed Malgun Gothic for verified Windows typography; sans-serif fallback outside verified environment"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "sampleSize": [
+          320,
+          104
+        ],
+        "faceSize": [
+          280,
+          72
+        ],
+        "label": "실행",
+        "background": "#252725",
+        "locale": "ko",
+        "font": "Malgun Gothic (not bundled)"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed; create a project-local variant for an actual missing axis."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native SVG",
+          "CSS",
+          "HTML"
+        ],
+        "originCandidate": "B02@1",
+        "originManifestSHA256": "53ace066acf7a6bd8af1d7584e31f59a172cb674803cc2bce7b3f21d76858071",
+        "originalSourceHashes": {
+          "index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+          "style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+          "B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+          "B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+          "B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+          "B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored geometric SVG/CSS/HTML; D38 authorizes cross-project sample reuse; U7-B source independently reviewed.",
+        "externalElements": [],
+        "limitations": "No font files distributed. Installed Windows font name only; other OS rendering unverified. No public license or product approval is granted."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a42e53c95f0389f1ffe12fbf08b5e0376c7ebb4d7ab212809175917a464256f6",
+        "sourceFingerprint": "30aa552dc247e3071bac79a2450580a03ccb6a9a22bee4dec1ae1f615b8d499c",
+        "environment": "U7-B independent Chrome 1280x720 SVG4 review; exact runtime bytes retained.",
+        "limits": "Static comparison and input/release smoke; held-press intermediate frame unobserved; no product runtime verdict."
+      }
+    },
+    {
+      "sampleId": "button-shape-square-raised",
+      "version": "1.0.0",
+      "kind": "button-shape",
+      "tags": [
+        "button",
+        "shape",
+        "square-raised",
+        "static"
+      ],
+      "description": "Same button label and size; contour/depth comparison, not a product control.",
+      "previewPath": "button-shapes/1.0.0/index.html",
+      "candidateSelector": "#B03",
+      "sourceFiles": {
+        "button-shapes/1.0.0/index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+        "button-shapes/1.0.0/style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+        "button-shapes/1.0.0/B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+        "button-shapes/1.0.0/B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+        "button-shapes/1.0.0/B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+        "button-shapes/1.0.0/B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+      },
+      "dependencies": {
+        "runtime": [
+          "SVG",
+          "CSS",
+          "HTML native buttons",
+          "Installed Malgun Gothic for verified Windows typography; sans-serif fallback outside verified environment"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "sampleSize": [
+          320,
+          104
+        ],
+        "faceSize": [
+          280,
+          72
+        ],
+        "label": "실행",
+        "background": "#252725",
+        "locale": "ko",
+        "font": "Malgun Gothic (not bundled)"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed; create a project-local variant for an actual missing axis."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native SVG",
+          "CSS",
+          "HTML"
+        ],
+        "originCandidate": "B03@1",
+        "originManifestSHA256": "53ace066acf7a6bd8af1d7584e31f59a172cb674803cc2bce7b3f21d76858071",
+        "originalSourceHashes": {
+          "index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+          "style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+          "B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+          "B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+          "B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+          "B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored geometric SVG/CSS/HTML; D38 authorizes cross-project sample reuse; U7-B source independently reviewed.",
+        "externalElements": [],
+        "limitations": "No font files distributed. Installed Windows font name only; other OS rendering unverified. No public license or product approval is granted."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a42e53c95f0389f1ffe12fbf08b5e0376c7ebb4d7ab212809175917a464256f6",
+        "sourceFingerprint": "30aa552dc247e3071bac79a2450580a03ccb6a9a22bee4dec1ae1f615b8d499c",
+        "environment": "U7-B independent Chrome 1280x720 SVG4 review; exact runtime bytes retained.",
+        "limits": "Static comparison and input/release smoke; held-press intermediate frame unobserved; no product runtime verdict."
+      }
+    },
+    {
+      "sampleId": "button-shape-round-raised",
+      "version": "1.0.0",
+      "kind": "button-shape",
+      "tags": [
+        "button",
+        "shape",
+        "round-raised",
+        "static"
+      ],
+      "description": "Same button label and size; contour/depth comparison, not a product control.",
+      "previewPath": "button-shapes/1.0.0/index.html",
+      "candidateSelector": "#B04",
+      "sourceFiles": {
+        "button-shapes/1.0.0/index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+        "button-shapes/1.0.0/style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+        "button-shapes/1.0.0/B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+        "button-shapes/1.0.0/B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+        "button-shapes/1.0.0/B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+        "button-shapes/1.0.0/B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+      },
+      "dependencies": {
+        "runtime": [
+          "SVG",
+          "CSS",
+          "HTML native buttons",
+          "Installed Malgun Gothic for verified Windows typography; sans-serif fallback outside verified environment"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "sampleSize": [
+          320,
+          104
+        ],
+        "faceSize": [
+          280,
+          72
+        ],
+        "label": "실행",
+        "background": "#252725",
+        "locale": "ko",
+        "font": "Malgun Gothic (not bundled)"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed; create a project-local variant for an actual missing axis."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native SVG",
+          "CSS",
+          "HTML"
+        ],
+        "originCandidate": "B04@1",
+        "originManifestSHA256": "53ace066acf7a6bd8af1d7584e31f59a172cb674803cc2bce7b3f21d76858071",
+        "originalSourceHashes": {
+          "index.html": "e1bc07e8bc0865102e3af4d58d08031232e68cb12f053b3acf9fb3d843c8b77f",
+          "style.css": "9ee4388d4122f55036dd363cc7212a67010055bcb430ebeaafc426ba8aa9e5ca",
+          "B01.svg": "547f57154bce35e5ef9835c829b922917a7c4f4830d724b34238fd9c17442e98",
+          "B02.svg": "433e3425a7a5c09196c2516b68df9eaac37996af47c29491afe4ac6343db6d73",
+          "B03.svg": "957d2b92f42de5f0333f1aa336498d8cd44d694f3090d5a2e1001f501b7c7aaf",
+          "B04.svg": "cfd1fae540e3dc6363fa03dc906e98039d46b2ba5e197427c5c2d4013cef8e29"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored geometric SVG/CSS/HTML; D38 authorizes cross-project sample reuse; U7-B source independently reviewed.",
+        "externalElements": [],
+        "limitations": "No font files distributed. Installed Windows font name only; other OS rendering unverified. No public license or product approval is granted."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "a42e53c95f0389f1ffe12fbf08b5e0376c7ebb4d7ab212809175917a464256f6",
+        "sourceFingerprint": "30aa552dc247e3071bac79a2450580a03ccb6a9a22bee4dec1ae1f615b8d499c",
+        "environment": "U7-B independent Chrome 1280x720 SVG4 review; exact runtime bytes retained.",
+        "limits": "Static comparison and input/release smoke; held-press intermediate frame unobserved; no product runtime verdict."
+      }
+    },
+    {
+      "sampleId": "playful-ui-motion-mechanical",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "playful",
+        "button",
+        "item",
+        "idle-hover-press",
+        "borderless",
+        "reduced-motion",
+        "mechanical"
+      ],
+      "description": "Crisp mechanical motion with signal idle, lift hover, immediate press and restrained secondary echoes.",
+      "previewPath": "playful-ui-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"mechanical\"]",
+      "sourceFiles": {
+        "playful-ui-motion/1.0.0/index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+        "playful-ui-motion/1.0.0/motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+        "playful-ui-motion/1.0.0/style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+      },
+      "dependencies": {
+        "runtime": [
+          "HTML native buttons",
+          "CSS",
+          "JavaScript Web Animations API",
+          "system fonts"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "responsiveViewport": [
+          720,
+          900
+        ],
+        "actionHitSize": [
+          102,
+          38
+        ],
+        "componentRoles": [
+          "button",
+          "item",
+          "status"
+        ],
+        "states": [
+          "idle",
+          "button-hover",
+          "item-hover",
+          "press",
+          "item-event",
+          "success"
+        ],
+        "contentProfile": "Generic ASCII labels; substitute project content and locale, then recheck fit.",
+        "motionPreference": "Geometry-free reduced-motion fallback"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Create a project-local variant for content, timing, amplitude, color, typography, or engine adaptation."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native HTML",
+          "CSS",
+          "JavaScript Web Animations API"
+        ],
+        "originCandidate": "sim-flight-shoot revision-23 portable extraction",
+        "originManifestSHA256": "42dc37dc5087db1621a61597f8eafd41e7198d5c82b58807875ab6a2ceec0765",
+        "parent": "sim-flight-shoot-stronger-borderless-motion-r23",
+        "originalSourceHashes": {
+          "index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+          "motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+          "style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored HTML/CSS/JavaScript; project owner explicitly authorized skill-first cross-project workflow reuse.",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license, product approval, or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "0598deb954c524328100f45f740b735045eb1014375ab8415badaa525e6dcec7",
+        "sourceFingerprint": "4db7f385a11deebf37ab10f512579cff1c63055cae01d7d04eabd6eb12513f6e",
+        "environment": "Independent Chromium/IAB playback; 1280x720 and 720x900; pointer, keyboard, reduced-motion, layout, source closure and console checked.",
+        "limits": "Project fit, user selection, template approval, engine implementation and product runtime remain separate."
+      }
+    }
+    ,
+    {
+      "sampleId": "playful-ui-motion-elastic",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "playful",
+        "button",
+        "item",
+        "idle-hover-press",
+        "borderless",
+        "reduced-motion",
+        "elastic"
+      ],
+      "description": "Soft elastic motion with breathing idle, inflate hover and readable squash-recoil feedback.",
+      "previewPath": "playful-ui-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"elastic\"]",
+      "sourceFiles": {
+        "playful-ui-motion/1.0.0/index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+        "playful-ui-motion/1.0.0/motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+        "playful-ui-motion/1.0.0/style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+      },
+      "dependencies": {
+        "runtime": [
+          "HTML native buttons",
+          "CSS",
+          "JavaScript Web Animations API",
+          "system fonts"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "responsiveViewport": [
+          720,
+          900
+        ],
+        "actionHitSize": [
+          102,
+          38
+        ],
+        "componentRoles": [
+          "button",
+          "item",
+          "status"
+        ],
+        "states": [
+          "idle",
+          "button-hover",
+          "item-hover",
+          "press",
+          "item-event",
+          "success"
+        ],
+        "contentProfile": "Generic ASCII labels; substitute project content and locale, then recheck fit.",
+        "motionPreference": "Geometry-free reduced-motion fallback"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Create a project-local variant for content, timing, amplitude, color, typography, or engine adaptation."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native HTML",
+          "CSS",
+          "JavaScript Web Animations API"
+        ],
+        "originCandidate": "sim-flight-shoot revision-23 portable extraction",
+        "originManifestSHA256": "42dc37dc5087db1621a61597f8eafd41e7198d5c82b58807875ab6a2ceec0765",
+        "parent": "sim-flight-shoot-stronger-borderless-motion-r23",
+        "originalSourceHashes": {
+          "index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+          "motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+          "style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored HTML/CSS/JavaScript; project owner explicitly authorized skill-first cross-project workflow reuse.",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license, product approval, or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "0598deb954c524328100f45f740b735045eb1014375ab8415badaa525e6dcec7",
+        "sourceFingerprint": "4db7f385a11deebf37ab10f512579cff1c63055cae01d7d04eabd6eb12513f6e",
+        "environment": "Independent Chromium/IAB playback; 1280x720 and 720x900; pointer, keyboard, reduced-motion, layout, source closure and console checked.",
+        "limits": "Project fit, user selection, template approval, engine implementation and product runtime remain separate."
+      }
+    }
+    ,
+    {
+      "sampleId": "playful-ui-motion-sticker",
+      "version": "1.0.0",
+      "kind": "motion",
+      "tags": [
+        "ui-feedback",
+        "playful",
+        "button",
+        "item",
+        "idle-hover-press",
+        "borderless",
+        "reduced-motion",
+        "sticker"
+      ],
+      "description": "Sticker-like tilt and pop with item-only outline echo and finite paper-like settle.",
+      "previewPath": "playful-ui-motion/1.0.0/index.html",
+      "candidateSelector": "figure[data-motion=\"sticker\"]",
+      "sourceFiles": {
+        "playful-ui-motion/1.0.0/index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+        "playful-ui-motion/1.0.0/motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+        "playful-ui-motion/1.0.0/style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+      },
+      "dependencies": {
+        "runtime": [
+          "HTML native buttons",
+          "CSS",
+          "JavaScript Web Animations API",
+          "system fonts"
+        ],
+        "external": []
+      },
+      "comparisonConditions": {
+        "previewViewport": [
+          1280,
+          720
+        ],
+        "responsiveViewport": [
+          720,
+          900
+        ],
+        "actionHitSize": [
+          102,
+          38
+        ],
+        "componentRoles": [
+          "button",
+          "item",
+          "status"
+        ],
+        "states": [
+          "idle",
+          "button-hover",
+          "item-hover",
+          "press",
+          "item-event",
+          "success"
+        ],
+        "contentProfile": "Generic ASCII labels; substitute project content and locale, then recheck fit.",
+        "motionPreference": "Geometry-free reduced-motion fallback"
+      },
+      "editableParameters": {
+        "supportedOverrides": [],
+        "limits": "Immutable seed. Create a project-local variant for content, timing, amplitude, color, typography, or engine adaptation."
+      },
+      "provenance": {
+        "creator": "workflow art-direction author",
+        "tools": [
+          "code-native HTML",
+          "CSS",
+          "JavaScript Web Animations API"
+        ],
+        "originCandidate": "sim-flight-shoot revision-23 portable extraction",
+        "originManifestSHA256": "42dc37dc5087db1621a61597f8eafd41e7198d5c82b58807875ab6a2ceec0765",
+        "parent": "sim-flight-shoot-stronger-borderless-motion-r23",
+        "originalSourceHashes": {
+          "index.html": "75064f049e00f8fb177d9f5139294af32fbfe4d0cb626911ab62db0135c8aca0",
+          "motion.js": "690679d9292d454ea9a24e8b1032b398b320999682b7b8a66f8053713f216d4d",
+          "style.css": "1d8ae779f02cdc9f0a44040f92a7b117bc71c358e2e14b84db07c6adc8491839"
+        }
+      },
+      "rights": {
+        "status": "cleared-for-workflow-reuse",
+        "basis": "Self-authored HTML/CSS/JavaScript; project owner explicitly authorized skill-first cross-project workflow reuse.",
+        "externalElements": [],
+        "limitations": "No third-party assets or font files. This record is not a public OSS license, product approval, or publication approval."
+      },
+      "verification": {
+        "status": "independent-source-pass",
+        "reviewSHA256": "0598deb954c524328100f45f740b735045eb1014375ab8415badaa525e6dcec7",
+        "sourceFingerprint": "4db7f385a11deebf37ab10f512579cff1c63055cae01d7d04eabd6eb12513f6e",
+        "environment": "Independent Chromium/IAB playback; 1280x720 and 720x900; pointer, keyboard, reduced-motion, layout, source closure and console checked.",
+        "limits": "Project fit, user selection, template approval, engine implementation and product runtime remain separate."
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workflow-run-registry.schema.json",
+  "title": "Indie game workflow run registry",
+  "type": "object",
+  "required": ["schemaVersion", "runs"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["runId", "recordPath", "status", "goalRevision", "goalKeys", "targetPaths"],
+        "additionalProperties": false,
+        "properties": {
+          "runId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "recordPath": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["needs-clarification", "needs-reconciliation", "ready", "running", "blocked", "completed", "cancelled"] },
+          "goalRevision": { "type": "integer", "minimum": 1 },
+          "goalKeys": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+          "targetPaths": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+          "conversationKey": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}
