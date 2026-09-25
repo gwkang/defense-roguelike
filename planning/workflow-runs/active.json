@@ -4,7 +4,7 @@
     {
       "runId": "workflow-adoption-publish-20260925",
       "recordPath": "planning/workflow-runs/workflow-adoption-publish-20260925/run.md",
-      "status": "running",
+      "status": "completed",
       "goalRevision": 1,
       "goalKeys": [
         "indie-game-workflow-adoption",
