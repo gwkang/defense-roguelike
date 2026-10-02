@@ -3,6 +3,10 @@ name: game-workflow-supervision
 description: Supervise a routed stateful or multi-stage indie-game run from clarification and planning through specialist handoffs, repair, integration and evidence-based completion.
 ---
 
+## defense-roguelike small-change policy · local overlay r1
+
+Apply [DR-WF-SMALL-001](../../../planning/workflow-small-change.md) when the project profile selects it. For that scope this project policy supersedes only the duplicate-role/packet requirements below. For the project small-change policy, use coordinator, author and one independent reviewer. Combine design/code/readability/functional/UI-impact/knowledge/completion review on one current evidence ledger; do not dispatch separate wiki/completion auditors or stage STOP packets by default. Keep failure lineage, current-candidate evidence, original/save guards, independent review and scoped T1–T4 investigation. Formal art and unresolved consequential decisions retain the existing specialist gates below.
+
 ## Role and inputs
 The main agent is the one overall supervisor. Own the run registry, execution record, clarification state and control decisions; specialists own product documents, code and quality verdicts. Read the routing decision, selected flow, request authority, project profile and any current plan. A plan may be pending during specification or clarification. Use [execution rules](references/execution-supervision.md), [run registry contract](references/run-registry.md) and [the run template](assets/run-template.md). When a dispatch tool can select a model, also apply [capability-tier model routing](references/model-routing.md).
 

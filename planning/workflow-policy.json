@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "revision": "DR-WF-SMALL-001-r1",
+  "scope": "defense-roguelike-project-only",
+  "defaultFor": ["approved-single-module", "local-bugfix", "bounded-tool-improvement"],
+  "contractPath": "planning/workflow-small-change.md",
+  "toolPath": "planning/tools/workflow_evidence.py",
+  "toolRegressionPath": "planning/tools/test_workflow_evidence.py",
+  "roles": ["coordinator", "author", "independent-reviewer"],
+  "combinedIndependentOutcomes": ["design", "code", "readability", "failure-boundaries", "functional-evidence", "ui-impact", "knowledge", "completion"],
+  "evidencePath": "planning/workflow-runs/<run-id>/evidence.json",
+  "fullWorkflowWhen": ["unresolved-product-decision", "unresolved-consequential-architecture", "formal-art-or-screen-design", "external-authorization"],
+  "newFeatureDevelopmentPaused": true,
+  "featureResumeRequires": "later-explicit-user-instruction",
+  "targetMinutes": [45, 75],
+  "targetVerified": false
+}

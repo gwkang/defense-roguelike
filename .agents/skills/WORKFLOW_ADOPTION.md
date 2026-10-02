@@ -29,3 +29,7 @@
 ## 갱신 절차
 
 공식 원격 revision과 bundle lock을 먼저 확인한다. 기존 프로젝트 변경을 보존하고 installer의 preview를 실행한 뒤 적용한다. 내용이 다른 기존 스킬은 자동 덮어쓰지 않으며, 변경 전후 해시와 프로젝트별 overlay를 구분해 기록한다.
+
+## 2026-10-02 작은 변경 로컬 delta
+
+기존 커밋된 번들을 보존한 채 프로젝트 선택형 작은 변경 경로만 추가한다. 정책/계약과 evidence 도구는 planning에 두고, 역할/문서 통합은 같은 실제 독립 리뷰의 필수 결과를 유지한다. [공개 범위](../../planning/workflow-runs/workflow-improvement-20261002/publication-summary.md)를 따른다. 다른 게임/위키/스킬 최신화의 미커밋 변경은 별도 상태로 유지한다.

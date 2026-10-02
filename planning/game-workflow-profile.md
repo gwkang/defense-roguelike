@@ -25,3 +25,13 @@ Revision: 1 · 2026-09-25. 현재 저장소의 `README.md`와 파일 구성을 �
 - 작업 규칙: [AGENTS.md](../AGENTS.md)
 - 워크플로 적용 기록: [.agents/skills/WORKFLOW_ADOPTION.md](../.agents/skills/WORKFLOW_ADOPTION.md)
 - 제품 기준, UI 설정, 컴포넌트 카탈로그, 모델 라우팅 프로필, 위키 연동은 확인되지 않았다. 해당 작업이 시작되면 실제 자료 또는 사용자 결정을 근거로 추가한다.
+
+## 작은 변경 실행 경로 · DR-WF-SMALL-001 r1
+
+| 설정 | 값 | 출처 |
+| --- | --- | --- |
+| `workflow.smallChangePolicyPath` | `planning/workflow-policy.json` | 사용자 2026-10-02 워크플로우 개선 지시 |
+| `workflow.smallChangeContractPath` | `planning/workflow-small-change.md` | 프로젝트 한정 역할 통합·필수 결과 유지 |
+| `workflow.evidenceToolPath` | `planning/tools/workflow_evidence.py` | 경로/JSON/fixture/검사 이름 preflight·실제 실행·보고서 생성 |
+
+현재 M16은 후보 부분 구현 상태로 중단했으며 제품/저장/원본 반영을 완료했다고 표시하지 않는다. 이전 완료 모듈과 현재 게임 콘텐츠 기준은 유지한다. 작은 변경의 실작업 소요시간과 45–75분 목표는 미검증이다.

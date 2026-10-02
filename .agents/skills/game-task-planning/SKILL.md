@@ -3,6 +3,10 @@ name: game-task-planning
 description: Break an agreed indie-game change into a small dependency-ordered set of specialist tasks and verification checkpoints.
 ---
 
+## defense-roguelike small-change policy · local overlay r1
+
+Apply [DR-WF-SMALL-001](../../../planning/workflow-small-change.md) when the project profile selects it. For that scope this project policy supersedes only the duplicate-role/packet requirements below. Select the project small-change path for approved single modules and local fixes. Plan one observable result, meaningful checks and impact-based UI coverage in one ledger. Adequate existing design is reused; the author prepares code/tests/wiki delta and a distinct reviewer checks all applicable mandatory outcomes. Extra roles/documents require a real unresolved decision or ownership boundary.
+
 ## Input/output
 Require scope, available specialist contracts and existing artifacts. Produce tasks with owner, input revisions, output, dependencies, acceptance evidence and completion state.
 For supervised runs, use the Tasks and Acceptance coverage sections of [the run template](../game-workflow-supervision/assets/run-template.md). Every selected output needs a real template and rules; have its specialist define missing scoped formats before production. Planning must preserve intent and acceptance IDs, identify unresolved decisions blocking implementation, and hand off to the supervisor without dispatching workers itself.

@@ -1,5 +1,9 @@
 # Execution and completion contract
 
+## defense-roguelike small-change policy · local overlay r1
+
+Apply [DR-WF-SMALL-001](../../../../planning/workflow-small-change.md) when the project profile selects it. For that scope this project policy supersedes only the duplicate-role/packet requirements below. For eligible project small changes, deliver one current JSON evidence ledger plus its generated concise report. The same independent reviewer covers design, code/readability/failure boundaries, functional/UI evidence, knowledge and completion. Preserve integration/original/save guards, current identity and affected regression; do not create a second evidence inventory or review handoff solely for wiki or completion.
+
 This reference is shipped with the unified workflow bundle. Read the section for the current responsibility; an implementer need not run the coordinator's procedure. Project instructions and existing authorization govern execution. This document does not grant delegation, installation or publication permission.
 
 Before producing or checking an artifact, apply [bounded artifact verification](verification-scope.md), including direct invocation. Necessary read scope and project-wide commands do not enlarge repair authority.

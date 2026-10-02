@@ -1,5 +1,9 @@
 # Execution supervision
 
+## defense-roguelike small-change policy · local overlay r1
+
+Apply [DR-WF-SMALL-001](../../../../planning/workflow-small-change.md) when the project profile selects it. For that scope this project policy supersedes only the duplicate-role/packet requirements below. For eligible project small changes, normal join/completion retrospective and applicable T1–T4 investigation are performed as a bounded part of the independent review, preserving holds and shared failure budgets. Do not add resident auditors, repeated preflight gates or duplicate freeze inventories. Record real stage spans and commands in the project single evidence CLI; a new candidate invalidates affected prior evidence.
+
 Apply [bounded artifact verification](../../game-task-planning/references/verification-scope.md) to each selected output. Freeze its criteria and repair scope before dispatch; carry the same contract into every retry and UI handoff. Out-of-scope findings are deferred observations, never automatic tasks or new gates.
 
 ## Preparation and ownership

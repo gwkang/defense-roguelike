@@ -3,6 +3,10 @@ name: game-workflow
 description: Use when starting or resuming indie-game work to reconnect an existing run, route the request, and activate supervision before stateful or multi-stage specialist work.
 ---
 
+## defense-roguelike small-change policy · local overlay r1
+
+Apply [DR-WF-SMALL-001](../../../planning/workflow-small-change.md) when the project profile selects it. For that scope this project policy supersedes only the duplicate-role/packet requirements below. Read the project profile's `workflow.smallChangePolicyPath` before selecting roles. For eligible bounded work, route to the project's small-change contract and its single evidence CLI; keep one supervisor and inherit consumed guideline revisions instead of rereading every handoff.
+
 ## Responsibility
 Be the game-work bootstrap and intake specialist. Preserve the user's goal, constraints and decision authority. Own run discovery and routing, not planning, product design or execution supervision.
 
