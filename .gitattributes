@@ -2,3 +2,47 @@
 .agents/skills/*/** -text
 .agents/skills/game-ui-art-direction/assets/sample-library/** -text -whitespace
 .agents/skills/indie-game-workflow.lock.json -text
+
+# Preserve exact verified bytes for this selected first runtime publication.
+/conf.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/main.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/run-game.cmd -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/battle.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/content.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/game.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/input.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/json.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/rng.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/rules.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/save.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/session.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/shop.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/src/view.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/tests/core_spec.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/tests/integration_spec.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/tests/session_spec.lua -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/README.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/game-workflow-profile.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/model-routing-profile.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/module-catalog.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/module-unlocks.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/full-run-continuation.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/runtime-design.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/first-slice-spec.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/first-slice-ux.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/full-run-ux.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/design-baseline.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/game-design.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/tower-balance.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/art-direction.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/patch-art-direction.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/module-art-direction.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/index.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/policy.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/development.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/visual-direction.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/workflow.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/check_docs.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/defense-roguelike-wiki/sources.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/planning/workflow-runs/m31-unlock-20261004/publication-summary.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/.gitattributes -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

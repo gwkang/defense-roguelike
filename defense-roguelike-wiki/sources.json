@@ -1,0 +1,174 @@
+{
+  "revision": 23,
+  "checkedOn": "2026-10-04",
+  "checkScope": "Selected public product sources, current wiki and publication summary only; unpublished local overlays/history excluded",
+  "sourceDisposition": "Exact included current bytes. sources.json excludes itself to avoid recursive identity; its bytes are frozen in the local publication plan. Local full129 manifest is immutable in publication/before and archived execution evidence. No dirty AGENTS/skills/tools/private records are represented by baseline HEAD hashes.",
+  "localHistoricalSourceCount": 129,
+  "localHistoricalManifestSha256": "0b735c07b278a3de98173d568df4c2d308ec5afe73217ee5cdd480182d244cf4",
+  "sources": [
+    {
+      "path": "conf.lua",
+      "sha256": "843e97206bee87bc16cbb5fc41d9ef617b9e9369708076e0c01587451fe78dc9"
+    },
+    {
+      "path": "main.lua",
+      "sha256": "eba6b5591cfdebdc81a7710d7f1d1f8acb03a548bc440da76346fc3dc479bdea"
+    },
+    {
+      "path": "run-game.cmd",
+      "sha256": "cf21e64ba83df9580b21fd68cc834f5e38ec888a08a60b4888cc2c73b56c9884"
+    },
+    {
+      "path": "src/battle.lua",
+      "sha256": "83ac150e0e932e593bb24c57c247d6de31d5a71563e86eecf55b2a1a9c3d01e2"
+    },
+    {
+      "path": "src/content.lua",
+      "sha256": "eab326588d9c6c99bd873902b61d8036ab766e71d60bcb6fabe3f9edbaf4073d"
+    },
+    {
+      "path": "src/game.lua",
+      "sha256": "fc5ccf4676eadc871fac51bd88be51da587294cfda13d4f771df570246b208f8"
+    },
+    {
+      "path": "src/input.lua",
+      "sha256": "29638a56d9666c6098530243805397899d03dd5d8e4ad1ddf76df9bb7c1e062e"
+    },
+    {
+      "path": "src/json.lua",
+      "sha256": "4156e9a99136b6d1c14c48905c8eb3ba61ec797fb654f85f151c5a5d1306a289"
+    },
+    {
+      "path": "src/rng.lua",
+      "sha256": "dd0df4d7c9c36acf8a63bb3f54a583a3af655c8a45470d6e3f85c77bd9c2fb56"
+    },
+    {
+      "path": "src/rules.lua",
+      "sha256": "d4edd5c1330f4a111e705e700f3872800d10928b81a82ee2fec01fc4727de81b"
+    },
+    {
+      "path": "src/save.lua",
+      "sha256": "f9142ac476db8bb749e554785170e38b257dfc9ca4737ffed4a8058e9a3de3b5"
+    },
+    {
+      "path": "src/session.lua",
+      "sha256": "658422dabbd06739cdf564bb4b449a7880e36c023bd900b6ab6c7bf264ac5ee1"
+    },
+    {
+      "path": "src/shop.lua",
+      "sha256": "644213921a82d2e9f82c1e16a0f65d064a7d167352bf13b626f22471a616acc4"
+    },
+    {
+      "path": "src/view.lua",
+      "sha256": "28b1b89a5568fc3aa6f9a2ba9d5303767f4bbb2ca84439530157ff7783cc51be"
+    },
+    {
+      "path": "tests/core_spec.lua",
+      "sha256": "0779fd5ab73ea5399effd66e202d67b63da6111b4d35507e17d8d89f4b469fa8"
+    },
+    {
+      "path": "tests/integration_spec.lua",
+      "sha256": "550be80e020f2e097d04961a9c975889613f1c72dccbfabbee1f47e810f7cb97"
+    },
+    {
+      "path": "tests/session_spec.lua",
+      "sha256": "51f21738fbba9fc6088acb4fab2dcbc7827cfa93679d458a72bb850ec11f9ee8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c7db992fa743cb8feb66b90be39b5b4fcf24d7ef57c9920b4ed7ce09a938de01"
+    },
+    {
+      "path": "planning/game-workflow-profile.md",
+      "sha256": "57f3737d5f69ee86b509b9ff6b11bd11eda709b5f2ee57adc16ebffb68f51abc"
+    },
+    {
+      "path": "planning/model-routing-profile.json",
+      "sha256": "8e69d6060ddb764874c3d0ad938a0742b5e80e8a96f57a5fac42203a5573abb1"
+    },
+    {
+      "path": "planning/module-catalog.md",
+      "sha256": "a1b7f633a002615d22f4c64b6d02c73aa6cbd67f92e883a637c59aaf9ad18ad4"
+    },
+    {
+      "path": "planning/module-unlocks.md",
+      "sha256": "1d7270456141e8999e8a10be3aa9a233f6fc1948a2fb9d3eaea4ac141c0f598f"
+    },
+    {
+      "path": "planning/full-run-continuation.md",
+      "sha256": "53fad426eeea2857d8d5547a1014bdba24e889a95293a562de0d52764ad5f5a9"
+    },
+    {
+      "path": "planning/runtime-design.md",
+      "sha256": "747f3834934c80258feb736724d24cdc1d4e6d456648bfa496ed585c9341f278"
+    },
+    {
+      "path": "planning/first-slice-spec.md",
+      "sha256": "9e0062a1dfac1f6830f32a25c2fe2cc3c06315636b6105c4b3801d24c050c490"
+    },
+    {
+      "path": "planning/first-slice-ux.md",
+      "sha256": "ceeec667d88475e8ec8c5285f75e211a26c5cd0c6b09657f84db361802df4ed0"
+    },
+    {
+      "path": "planning/full-run-ux.md",
+      "sha256": "9c41b8543366772b2ef3094f0c2da82b6b1acbaac05a6f3c6f83dcfbe9f54fc8"
+    },
+    {
+      "path": "planning/design-baseline.md",
+      "sha256": "cfd1171a8653bbe53c51c2330ee990cd729616c42f3796dd4a83f5c71725f408"
+    },
+    {
+      "path": "planning/game-design.md",
+      "sha256": "fdb62b659267c0d2d7580bb586bd4efd727010c13437d3ca924d3ec633828e12"
+    },
+    {
+      "path": "planning/tower-balance.md",
+      "sha256": "e8a9e512aa4ddec0528dfcb2a024d14f9830c85916648da2c409a53efdf10265"
+    },
+    {
+      "path": "planning/art-direction.md",
+      "sha256": "306a7a61c447942233b9d4d8f6134fe8cbe5a141de7960307b6c9b73e2be9b9a"
+    },
+    {
+      "path": "planning/patch-art-direction.md",
+      "sha256": "25f2fb37eadbe7e45675a334e4d314242cd335014e5ed24b308104dc9a5d396e"
+    },
+    {
+      "path": "planning/module-art-direction.md",
+      "sha256": "325fec1f6e7566bcfe893cfa7cb5a3cedacee5167154a6d920a112bd903b0919"
+    },
+    {
+      "path": "defense-roguelike-wiki/index.md",
+      "sha256": "e27988c108fdbf32253da789ec1993b6903a6898c754c0884c8577856d1a3d4e"
+    },
+    {
+      "path": "defense-roguelike-wiki/policy.md",
+      "sha256": "11ed98adaf945a8f47990b7ac59fe9d886f9cdba5f3396a8f32fb0e4be348d22"
+    },
+    {
+      "path": "defense-roguelike-wiki/development.md",
+      "sha256": "bdb9450925ea23d8e96083e9c8742fe888546b6a2bee0a6df9102e37406d5a51"
+    },
+    {
+      "path": "defense-roguelike-wiki/visual-direction.md",
+      "sha256": "9d93f2f746803a0b7852f5c3455d3894aaa300d6e9f2b5f8e1ebb5926460f315"
+    },
+    {
+      "path": "defense-roguelike-wiki/workflow.md",
+      "sha256": "795a1d45003fefe3d3ff296de5ab778d74bc6c955c70f1941d7a96c0867b9ea6"
+    },
+    {
+      "path": "defense-roguelike-wiki/check_docs.py",
+      "sha256": "a4eed9c1033a9ccc7d9686085eee841e6f14d4ef3dbbb9a2a2765de7676acae6"
+    },
+    {
+      "path": "planning/workflow-runs/m31-unlock-20261004/publication-summary.md",
+      "sha256": "0d2c829ccd1a44405a8deb23c3e31dc7ef39ece409f40a40334a1371cbddbdb6"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "88a80840ad2540ed2e01cae468784bd6272dde87e759ba7b3133152400ebe6a2"
+    }
+  ]
+}

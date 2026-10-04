@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "revision": "DR-MODEL-001-r1",
+  "tiers": {
+    "highest-judgment": { "preferredModels": ["gpt-6-astra"], "reasoningEffort": "high" },
+    "complex-execution": { "preferredModels": ["gpt-6.1-sol"], "reasoningEffort": "high" },
+    "balanced-execution": { "preferredModels": ["gpt-6.1-sol"], "reasoningEffort": "medium" },
+    "high-volume": { "preferredModels": ["gpt-6-luna"], "reasoningEffort": "medium" }
+  }
+}
