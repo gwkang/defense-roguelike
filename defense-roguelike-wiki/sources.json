@@ -80,7 +80,7 @@
     },
     {
       "path": "planning/game-workflow-profile.md",
-      "sha256": "57f3737d5f69ee86b509b9ff6b11bd11eda709b5f2ee57adc16ebffb68f51abc"
+      "sha256": "dde2ee7580e3ce6157b3dc032f13aad9d035a37bb94a8e8918f688c0c48116ad"
     },
     {
       "path": "planning/model-routing-profile.json",
@@ -156,7 +156,7 @@
     },
     {
       "path": "defense-roguelike-wiki/workflow.md",
-      "sha256": "795a1d45003fefe3d3ff296de5ab778d74bc6c955c70f1941d7a96c0867b9ea6"
+      "sha256": "f337f1f0a7c509d52666712b50d1fec12b412bf42ecc4a95909cc9baa883bb02"
     },
     {
       "path": "defense-roguelike-wiki/check_docs.py",
@@ -168,7 +168,35 @@
     },
     {
       "path": ".gitattributes",
-      "sha256": "88a80840ad2540ed2e01cae468784bd6272dde87e759ba7b3133152400ebe6a2"
+      "sha256": "1a268d6fe03e80ce9c0d8ea19fc4d62f8979b0d529d628724b49c0e98a4c2fbe"
+    },
+    {
+      "path": "planning/tools/workflow_support.py",
+      "sha256": "96121e98c604c7aa57c36880a92b346d8473e9dbaddd48aa86cf09d8b69893be"
+    },
+    {
+      "path": "planning/tools/test_workflow_support.py",
+      "sha256": "e1b437a740942904688b4f1163c8b0d6b1c39be655829479bb56734a6ef76307"
+    },
+    {
+      "path": "planning/tools/workflow_evidence.py",
+      "sha256": "326adb9fa6e05d7f5c8bfa30f5ca965362cb306e409ec3d33b04924dff670858"
+    },
+    {
+      "path": "planning/tools/test_workflow_evidence.py",
+      "sha256": "35d6165804a3d2ded294b39f5735819655efc374280c2324538fdffe0f641a55"
+    },
+    {
+      "path": "planning/workflow-operations.md",
+      "sha256": "c46be6796150b8920dd6bdad481a4ab5cd458ac20f53b7c18484721fabef8b3a"
+    },
+    {
+      "path": "planning/workflow-small-change.md",
+      "sha256": "1facf7ab73061ccc1ab48431b51e938bf36d5139466e138e61799bdfadc267d7"
+    },
+    {
+      "path": "planning/workflow-verification-summary.md",
+      "sha256": "038c727603dcea879b972742618108983774778cc3a238e3c3da31569ac44709"
     }
   ]
 }

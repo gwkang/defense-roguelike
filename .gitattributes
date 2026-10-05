@@ -46,3 +46,12 @@
 /defense-roguelike-wiki/sources.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 /planning/workflow-runs/m31-unlock-20261004/publication-summary.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 /.gitattributes -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Workflow evidence files keep identical checkout/blob bytes for source hashes.
+planning/tools/workflow_support.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/tools/test_workflow_support.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/tools/workflow_evidence.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/tools/test_workflow_evidence.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/workflow-operations.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/workflow-small-change.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+planning/workflow-verification-summary.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

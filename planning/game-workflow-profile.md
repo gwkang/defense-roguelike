@@ -74,3 +74,7 @@ Revision: 21 · 2026-10-04. 필수 위키·모델 라우팅 설정을 유지하�
 사용자 ‘개선된 워크플로우로 이어서 진행해’로 M16 완료 후 I31/M31 단위를 재개한다. 위의 M16-only/후속 백로그 미승인 문장은 당시 범위로 보존하며 이번 최신 범위는 [M31 공개 검증 요약](workflow-runs/m31-unlock-20261004/publication-summary.md)과 현재 정책의 currentResumeScope를 따른다. 다른 후속 단위는 미승인이다.
 
 - I31은 신규 W09–W14 일반 생존 완료에서 미배치 타워의 서로 다른 종류2종 이상을 전투 내내 보유하면 M31 예비 보급을 영구 해금한다. 동종은1종이며 예비를 배치하여1종만 남으면 제외한다. 중가12G·슬롯1 M31은 일반 생존 정산의 완료 미배치 종류당+1G, 최대3G를 기존 수입에 합산한다. W01–W14 효과와 W09–W14 해금 창을 구분하며 W15·패배·미완료·중복 완료는 지급/해금하지 않는다. 시작/summary/정산 후보의 타워 ID·종류·패치를 대조하고 시작 배치의 위치 유지와 summary/후보 배치 일치를 검증한다. COMBAT writer는 기존 예비 배치만 가능하므로 미배치 종류 집합의 단조 감소가 전투 내내 조건의 근거다. 회수·판매·구매 writer가 추가되면 이 증명을 다시 검토한다. 완료 checkpoint readback 뒤 권리·알림을 공개하며 현재 판 풀·상품·RNG는 동결한다. 다음 성공 새 판만 시작24+확정10권리, 최대34종 후보를 재추첨한다. load write0의13개 역사 버전은 당시 풀·상품·RNG·권리·지불 기록을 보존하고 I31을 소급 추정하지 않는다.
+
+## 현재 로컬 운영 보조 경로 · 2026-10-05
+
+`workflow.operationsPath`: [planning/workflow-operations.md](workflow-operations.md). `workflow.supportToolPath`: [planning/tools/workflow_support.py](tools/workflow_support.py). 읽기 전용 status/compare-set/inspect를 기존 단일 실행 증거와 checkpoint에 연결한다. 현재 profile의 제품/version, 정책과 기능 재개 범위는 이 운영 보조로 변경하지 않는다.

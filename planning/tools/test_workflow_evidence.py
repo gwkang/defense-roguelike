@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import shutil
 import struct
+import subprocess
 import zlib
 import unittest
 import uuid
@@ -69,9 +70,12 @@ class EvidenceTests(unittest.TestCase):
         w.accept_review(self.record, self.review())
         out = self.root / "report.md"
         self.assertTrue(w.render(self.record, out)["PASS"])
-        self.assertIn("[stdout](raw/01-unit.stdout.log)", out.read_text(encoding="utf-8"))
-        self.assertIn("[stderr](raw/01-unit.stderr.log)", out.read_text(encoding="utf-8"))
-        self.assertEqual(w.load(self.record)["attempts"][0]["actualCount"], 1)
+        attempt = w.load(self.record)["attempts"][0]
+        for label in ("stdout", "stderr"):
+            relative = Path(attempt[label]["path"]).relative_to(out.parent).as_posix()
+            self.assertIn(f"[{label}]({relative})", out.read_text(encoding="utf-8"))
+            self.assertTrue(Path(attempt[label]["path"]).is_file())
+        self.assertEqual(attempt["actualCount"], 1)
 
     def test_zero_execution_never_completes(self):
         self.init()
@@ -87,11 +91,14 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(result["actualCount"], 0)
 
     def test_nonzero_exit_preserves_raw_failure(self):
+        self.plan["checks"]["unit"]["adapter"] = "love"
         self.init()
-        result = w.execute(self.record, "unit", [sys.executable, "-c", "import sys; print('specific failure'); sys.exit(7)"])
+        output = "PASS test_positive\n1 tests, 0 failures\nTEST SUITE: 0 file failures\n"
+        result = w.execute(self.record, "unit", [sys.executable, "-c", "import sys; print(" + repr(output) + "); sys.exit(7)"])
+        self.assertTrue(result["complete"])
         self.assertFalse(result["PASS"])
         self.assertEqual(result["exitCode"], 7)
-        self.assertIn(b"specific failure", Path(result["stdout"]["path"]).read_bytes())
+        self.assertIn(b"PASS test_positive", Path(result["stdout"]["path"]).read_bytes())
 
     def test_timeout_and_incomplete_invocation_cannot_pass(self):
         self.init()
@@ -320,6 +327,25 @@ class EvidenceTests(unittest.TestCase):
         self.assertTrue(w.parse_output("love", output)["complete"])
         self.assertFalse(w.parse_output("love", output.replace("0 file failures", "1 file failures"))["complete"])
         self.assertFalse(w.parse_output("love", "PASS real test")["complete"])
+        output = ("PASS core test\nPASS all 1 core tests\n"
+                  "PASS session test\n1 tests, 0 failures\n"
+                  "PASS integration test\nPASS all 1 integration tests\nTEST SUITE: 0 file failures\n")
+        observed = w.parse_output("love", output)
+        self.assertTrue(observed["complete"])
+        self.assertEqual(observed["actualCount"], 3)
+        self.assertEqual(observed["names"], ["core test", "session test", "integration test"])
+        rejected = {
+            "missing session summary": output.replace("1 tests, 0 failures\n", ""),
+            "session failure": output.replace("1 tests, 0 failures", "1 tests, 1 failures"),
+            "duplicate session summary": output.replace("1 tests, 0 failures", "1 tests, 0 failures\n0 tests, 0 failures"),
+            "failure line": output + "FAIL observed assertion\n",
+            "missing invocation marker": output.replace("TEST SUITE: 0 file failures\n", ""),
+            "count mismatch": output.replace("1 tests, 0 failures", "2 tests, 0 failures"),
+            "duplicate test name": output.replace("PASS session test", "PASS core test"),
+        }
+        for reason, raw in rejected.items():
+            with self.subTest(reason=reason):
+                self.assertFalse(w.parse_output("love", raw)["complete"])
 
     def test_stage_closes_changed_candidate_without_refreshing_evidence(self):
         self.init()
@@ -334,6 +360,222 @@ class EvidenceTests(unittest.TestCase):
         self.assertIn("candidate changed", span["endIdentityError"])
         with self.assertRaises(w.EvidenceError):
             w.required_evidence(w.load(self.record))
+
+    def suite_output(self, suites=("core", "session", "integration")):
+        return "".join("PASS " + suite + " positive\nWORKFLOW SUITE " +
+                       json.dumps({"schemaVersion": 1, "suite": suite, "count": 1, "failures": 0}) + "\n"
+                       for suite in suites) + "TEST SUITE: 0 file failures\n"
+
+    def native_plan(self, output=None, mode="regression", body=None):
+        candidate = self.root / "candidate"
+        candidate.mkdir(exist_ok=True)
+        (candidate / "main.lua").write_text("-- isolated native entry fixture\n", encoding="utf-8")
+        (candidate / "__main__.py").write_text(body or
+            "import os, sys\nprint('cwd=' + os.getcwd())\nprint('문자열 정상')\n"
+            "assert os.environ['PYTHONUTF8'] == '1'\nassert os.environ['PYTHONIOENCODING'] == 'utf-8'\n"
+            "assert '--test' in sys.argv\nprint(" + repr(output or self.suite_output()) + ")\n", encoding="utf-8")
+        self.plan["candidateFiles"] += ["candidate/main.lua", "candidate/__main__.py"]
+        self.plan["checks"] = {"native": {"adapter": "love", "minimumCount": 3,
+            "expectedNames": ["core positive", "session positive", "integration positive"],
+            "testSources": ["candidate/__main__.py"],
+            "native": {"mode": mode, "candidate": "candidate", "engine": sys.executable}}}
+        return self.plan["checks"]["native"]
+
+    def test_native_uses_candidate_cwd_absolute_entry_utf8_and_defaults(self):
+        self.native_plan()
+        self.init()
+        result = w.execute_native(self.record, "native")
+        self.assertTrue(result["PASS"])
+        self.assertEqual(result["workingDirectory"], str(self.root / "candidate"))
+        self.assertEqual(result["command"], [str(Path(sys.executable).resolve()), str(self.root / "candidate"), "--test"])
+        self.assertEqual(result["timeoutSeconds"], 180)
+        raw = Path(result["stdout"]["path"]).read_text(encoding="utf-8")
+        self.assertIn("문자열 정상", raw)
+        self.assertIn("cwd=" + str(self.root / "candidate"), raw)
+        self.assertEqual(result["outputFormat"], "workflow-suite-v1")
+        w.required_evidence(w.load(self.record))
+        with self.assertRaises(w.EvidenceError):
+            w.execute(self.record, "native", result["command"])
+
+    def test_native_mode_defaults_and_planned_override(self):
+        spec = self.native_plan()
+        for mode, limit in w.NATIVE_TIMEOUTS.items():
+            spec["native"]["mode"] = mode
+            command, cwd, timeout = w.native_settings(self.root, spec)
+            self.assertEqual(timeout, limit)
+            self.assertEqual(cwd, self.root / "candidate")
+            self.assertEqual(command[2:], [] if mode == "focused" else [{"regression": "--test", "smoke": "--smoke", "captures": "--capture"}[mode]])
+        spec["native"]["timeoutSeconds"] = 240
+        self.assertEqual(w.native_settings(self.root, spec)[2], 240)
+        for limit in (0, -1, True, float("nan"), float("inf"), 3601, "90"):
+            spec["native"]["timeoutSeconds"] = limit
+            with self.subTest(limit=limit), self.assertRaises(w.EvidenceError):
+                w.native_settings(self.root, spec)
+
+    def test_native_invalid_entry_engine_and_unfrozen_config(self):
+        spec = self.native_plan()
+        invalid = ({"candidate": "missing"}, {"candidate": "../outside"},
+                   {"entry": "."}, {"engine": "python"},
+                   {"engine": str(self.root / "missing.exe")}, {"mode": "unknown"})
+        for change in invalid:
+            check = deepcopy(spec)
+            check["native"].update(change)
+            with self.subTest(change=change), self.assertRaises(w.EvidenceError):
+                w.native_settings(self.root, check)
+        self.plan["candidateFiles"].remove("candidate/main.lua")
+        with self.assertRaises(w.EvidenceError):
+            self.init()
+        self.plan["candidateFiles"].append("candidate/main.lua")
+        (self.root / "candidate/conf.lua").write_text("-- native config", encoding="utf-8")
+        with self.assertRaises(w.EvidenceError):
+            self.init()
+
+    def test_native_rejects_invalid_expected_suites_and_adapter(self):
+        spec = self.native_plan()
+        for names in (["core", "core"], [], [{"suite": "core"}], "core", ["bad name"], ["core"]):
+            spec["expectedSuites"] = names
+            with self.subTest(names=names), self.assertRaises(w.EvidenceError):
+                w.preflight(self.root, self.plan)
+        del spec["expectedSuites"]
+        spec["adapter"] = "smoke"
+        with self.assertRaises(w.EvidenceError):
+            self.init()
+        spec["adapter"] = "love"
+        spec["native"]["mode"] = "focused"
+        with self.assertRaises(w.EvidenceError):
+            self.init()
+
+    def test_native_failed_and_timed_out_attempts_preserve_raw(self):
+        spec = self.native_plan(body="import sys, time\nprint('core positive before timeout', flush=True)\ntime.sleep(3)\n")
+        spec["expectedNames"] = ["core positive"]
+        # Allow interpreter startup before exercising partial-output retention.
+        spec["native"]["timeoutSeconds"] = 1
+        self.init()
+        result = w.execute_native(self.record, "native")
+        self.assertFalse(result["PASS"])
+        self.assertTrue(result["timedOut"])
+        self.assertIn(b"before timeout", Path(result["stdout"]["path"]).read_bytes())
+        with self.assertRaises(w.EvidenceError):
+            w.required_evidence(w.load(self.record))
+
+    def test_native_nonzero_exit_cannot_promote_complete_summaries(self):
+        output = self.suite_output()
+        self.native_plan(body="import sys\nprint(" + repr(output) + ")\n# core positive session positive integration positive\nsys.exit(7)\n")
+        self.init()
+        result = w.execute_native(self.record, "native")
+        self.assertTrue(result["complete"])
+        self.assertFalse(result["PASS"])
+        self.assertEqual(result["exitCode"], 7)
+
+    def test_native_focused_explicit_suite_entry(self):
+        output = self.suite_output(("core",))
+        spec = self.native_plan(mode="focused", body="print(" + repr(output) + ")\n")
+        spec.update(minimumCount=1, expectedNames=["core positive"], expectedSuites=["core"])
+        self.init()
+        result = w.execute_native(self.record, "native")
+        self.assertTrue(result["PASS"])
+        self.assertEqual(result["timeoutSeconds"], 60)
+
+    def test_native_smoke_and_capture_modes_use_fresh_entry_outputs(self):
+        for mode in ("smoke", "captures"):
+            with self.subTest(mode=mode):
+                spec = self.native_plan(mode=mode, body="print('SMOKE PASS fixture')\n")
+                spec.update(adapter="smoke", minimumCount=1, expectedNames=[], testSources=[])
+                if mode == "captures":
+                    data = self.png_fixture()
+                    (self.root / "candidate/__main__.py").write_text(
+                        "from pathlib import Path\nPath('screen.png').write_bytes(bytes.fromhex('" + data.hex() + "'))\nprint('CAPTURE PASS')\n", encoding="utf-8")
+                    spec.update(adapter="images", artifacts=["candidate/screen.png"],
+                                coverage=[{"artifact": "candidate/screen.png", "state": "fixture", "target": "2x1"}])
+                self.plan["candidateFiles"] = sorted(set(self.plan["candidateFiles"]))
+                record = self.root / (mode + "-evidence.json")
+                w.initialize(self.root, self.plan, record)
+                result = w.execute_native(record, "native")
+                self.assertTrue(result["PASS"])
+                self.assertEqual(result["timeoutSeconds"], w.NATIVE_TIMEOUTS[mode])
+                w.required_evidence(w.load(record))
+
+    def test_native_cli_from_unrelated_cwd_returns_utf8_json(self):
+        self.native_plan()
+        self.init()
+        result = subprocess.run([sys.executable, "-B", str(Path(w.__file__).resolve()), "native",
+                                 "--record", str(self.record), "--id", "native"],
+                                cwd=self.fixture_parent, capture_output=True, timeout=10)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(json.loads(result.stdout.decode("utf-8"))["PASS"])
+
+    def test_native_metadata_or_engine_drift_cannot_validate(self):
+        self.native_plan()
+        self.init()
+        w.execute_native(self.record, "native")
+        baseline = w.load(self.record)
+        for field, value in (("workingDirectory", str(self.root)), ("timeoutSeconds", 55),
+                             ("command", [sys.executable]), ("environment", {}), ("nativeExecution", {})):
+            record = deepcopy(baseline)
+            record["attempts"][0][field] = value
+            with self.subTest(field=field), self.assertRaises(w.EvidenceError):
+                w.required_evidence(record)
+        record = deepcopy(baseline)
+        record["attempts"][0]["nativeExecution"]["engineFingerprint"]["sha256"] = "wrong"
+        with self.assertRaises(w.EvidenceError):
+            w.required_evidence(record)
+
+    def test_structured_suite_summary_validates_all_three_and_focused_subset(self):
+        observed = w.parse_output("love", self.suite_output())
+        self.assertTrue(observed["complete"])
+        self.assertEqual(observed["actualCount"], 3)
+        self.assertEqual([row["suite"] for row in observed["suiteResults"]], ["core", "session", "integration"])
+        focused = self.suite_output(("core",))
+        self.assertFalse(w.parse_output("love", focused)["complete"])
+        self.assertTrue(w.parse_output("love", focused, ["core"])["complete"])
+
+    def test_structured_suite_rejects_malformed_mixed_missing_and_failure(self):
+        output = self.suite_output()
+        cases = [output + 'WORKFLOW SUITE {}\n', output.replace('"suite": "core"', '"suite": "session"'),
+                 output.replace('"count": 1', '"count": true', 1), output.replace('"failures": 0', '"failures": 1', 1),
+                 output.replace('WORKFLOW SUITE {', 'WORKFLOW SUITE invalid {', 1),
+                 output + "PASS all 3 core tests\n", output + "1 tests, 0 failures\n", output + "FAIL assertion\n",
+                 output.replace("TEST SUITE: 0 file failures\n", ""), output.replace("0 file failures", "1 file failures"),
+                 output.replace("PASS core positive\n", ""), output + "PASS unclosed test\n",
+                 output.replace('"schemaVersion": 1', '"schemaVersion": 2', 1),
+                 output.replace('"schemaVersion": 1', '"schemaVersion": true'),
+                 output.replace('"schemaVersion": 1', '"schemaVersion": 1.0'),
+                 output.replace('"schemaVersion": 1', '"schemaVersion": "1"')]
+        for index, raw in enumerate(cases):
+            with self.subTest(index=index):
+                self.assertFalse(w.parse_output("love", raw)["complete"])
+        # Total four and all counts positive: grand-total-only parsing would pass.
+        swapped = output.replace("PASS session positive\n", "PASS session positive\nPASS session extra\n")
+        swapped = swapped.replace('"suite": "core", "count": 1', '"suite": "core", "count": 2')
+        self.assertFalse(w.parse_output("love", swapped)["complete"])
+
+    def test_same_candidate_separate_records_and_retries_never_overwrite_raw(self):
+        first = self.init()
+        original = self.run_unit()
+        old_path = Path(original["stdout"]["path"])
+        old_bytes = old_path.read_bytes()
+        second_record = self.root / "second-evidence.json"
+        second = w.initialize(self.root, self.plan, second_record)
+        self.assertEqual(first["identity"], second["identity"])
+        other = w.execute(second_record, "unit", [sys.executable, "-B", "-m", "unittest", "-v", "test_sample"], 10)
+        retry = self.run_unit()
+        self.assertEqual(len({original["stdout"]["path"], other["stdout"]["path"], retry["stdout"]["path"]}), 3)
+        self.assertEqual(old_bytes, old_path.read_bytes())
+        w.required_evidence(w.load(self.record))
+        w.required_evidence(w.load(second_record))
+
+    def test_legacy_raw_paths_still_validate_without_new_native_fields(self):
+        self.init()
+        self.run_unit()
+        record = w.load(self.record)
+        for label in ("stdout", "stderr"):
+            row = record["attempts"][0][label]
+            legacy = self.root / "raw" / ("01-unit." + label + ".log")
+            legacy.write_bytes(Path(row["path"]).read_bytes())
+            row["path"] = str(legacy)
+        for field in ("workingDirectory", "timeoutSeconds", "environment", "resultSchemaVersion", "suiteResults", "outputFormat"):
+            record["attempts"][0].pop(field, None)
+        w.required_evidence(record)
 
 
 if __name__ == "__main__":

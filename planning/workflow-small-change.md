@@ -49,9 +49,40 @@ capture 계획은 상태·target·새 PNG 경로를 매핑한다. 기존 파일�
 ```powershell
 python -B planning/tools/workflow_evidence.py init --root . --plan planning/workflow-runs/<run-id>/plan.json --record planning/workflow-runs/<run-id>/evidence.json
 python -B planning/tools/workflow_evidence.py stage --record planning/workflow-runs/<run-id>/evidence.json --name implementation --state begin
-python -B planning/tools/workflow_evidence.py check --record planning/workflow-runs/<run-id>/evidence.json --id core --timeout 90 -- 'C:/Program Files/LOVE/lovec.exe' . --test
+python -X utf8 -B planning/tools/workflow_evidence.py native --record planning/workflow-runs/<run-id>/evidence.json --id regression
 python -B planning/tools/workflow_evidence.py review --record planning/workflow-runs/<run-id>/evidence.json --result planning/workflow-runs/<run-id>/review.json
 python -B planning/tools/workflow_evidence.py report --record planning/workflow-runs/<run-id>/evidence.json --output planning/workflow-runs/<run-id>/result.md
 ```
 
 `plan.json`에는 도구의 `preflight`가 요구하는 schemaVersion/runId/authority/outcome/designDecision/candidateFiles/actors/checks/impacts/preservation/guards를 넣는다. 각 test check에는 adapter·positive minimumCount·actual expectedNames·후보에 포함된 testSources, image check에는 artifacts와 state/target coverage를 넣는다. 필요 JSON·fixture만 jsonInputs/fixtures에 지정한다. 검사 수·예전 후보 경로·버전은 하드코딩해 복제하지 않는다.
+
+## 운영 관측 보조 · 2026-10-05
+
+[운영 지침](workflow-operations.md)은 기존 checkpoint·정확 ID 집합·필드 조회·실제 시작 시각·합류 소유권을 연결한다. 읽기 전용 workflow_support.py는 현재 단일 evidence의 latest attempt/pending/drift/review 적용성을 관측하며 기존 검사·독립 리뷰·완료 gate를 대신하지 않는다. 정책·제품 재개 권한·필수 acceptance 구조는 동일하다.
+
+## 공통 native 실행 · DR-WF-EXEC-001-r1
+
+
+LÖVE의 regression/focused/smoke/captures 검사는 `checks.<id>.native`에 mode, 저장소 상대 candidate, 명시적인 절대 engine 경로를 선언하고 `native`로 실행한다. entry 생략 시 candidate 자체를 사용하며 별도 entry는 그 후보 안의 디렉터리여야 한다. 실제 실행 cwd는 candidate이고 engine·entry는 절대 경로다. 호출 위치의 원본 tests와 후보 src가 섞이지 않도록 상대 명령을 직접 조합하지 않는다. main.lua와 존재하는 conf.lua, 실행에서 읽는 소스·테스트·fixture는 candidateFiles/testSources에 포함한다. helper entry가 사용하는 데이터도 동결한다.
+
+기본 timeout은 regression 180초, focused 60초, smoke 30초, captures 60초다. 이는 완료되지 않는 실행을 끊는 상한이며 기다려야 하는 시간이 아니다. 관측 근거가 있으면 plan의 timeoutSeconds로 0초 초과·3600초 이하의 유한값을 명시한다. timeout·비정상 종료를 PASS로 바꾸지 않으며 부분 raw도 보존한다. CLI와 Python 자식 출력은 UTF-8을 고정한다. 결과에는 실제 cwd·command·timeout·환경·engine hash가 남는다. 엔진 변경도 이전 native 결과 재사용을 막는다.
+
+```json
+"regression": {
+  "adapter": "love",
+  "minimumCount": 1,
+  "expectedNames": ["실제 소스에서 확인한 핵심 테스트 이름"],
+  "testSources": ["planning/workflow-runs/<run-id>/candidate/tests/core_spec.lua"],
+  "native": {
+    "mode": "regression",
+    "candidate": "planning/workflow-runs/<run-id>/candidate",
+    "engine": "C:/Program Files/LOVE/lovec.exe"
+  }
+}
+```
+
+이 조각은 전체 plan이 아니다. minimumCount/expectedNames/testSources와 candidateFiles는 실제 검사 범위에 맞춘다. regression은 기본 게임 entry에 --test를 전달하고 core/session/integration 세 suite를 모두 요구한다. focused는 명시한 전용 entry를 실행하며 expectedSuites에 실제 부분 suite 목록을 적는다. smoke는 --smoke, captures는 --capture를 전달한다. 현재 기본 게임 main.lua는 --capture를 제공하지 않으므로 captures는 해당 인자를 처리하는 동결된 전용 entry가 필요하다. 캡처 경로를 entry가 쓰는 후보 상대 경로와 plan의 저장소 상대 artifacts/coverage에 정확히 맞춘다.
+
+세 게임 테스트는 `WORKFLOW SUITE {"schemaVersion":1,"suite":"core|session|integration","count":N,"failures":F}` 형식으로 같은 완료 결과를 낸다. 종료 전에 실패한 suite도 결과를 출력한다. adapter는 각 suite 직전의 실제 PASS/FAIL 수, 전체 이름 중복, 기대 suite 집합, failure=0과 기존 TEST SUITE 종료표시를 대조한다. 잘못된 JSON·누락·중복·구형 출력 혼합·count 불일치는 완료가 아니다. 구형 역사 로그는 기존 adapter로 계속 읽되 새 JSON 결과와 한 실행에서 섞지 않는다.
+
+raw stdout/stderr는 `raw/<run-id>/<candidate-identity>/<attempt>-<check-id>-<uuid>/`에 실행마다 새로 만들며 파일도 배타적으로 생성한다. 다른 기록의 동일 후보·동일 시도 번호와 겹치지 않는다. 실패·재시도와 기존 raw 경로는 보존하고 보고서가 실제 경로를 연결한다. 동일 evidence.json은 한 작성자가 순차 갱신하며 병렬 실행은 서로 다른 record를 사용한다. 전체 suite는 안정 후보에서 필요한 한 번으로 마무리하고 준비·수리 중에는 영향을 받는 핵심 검사만 선택한다.

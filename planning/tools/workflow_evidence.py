@@ -10,19 +10,23 @@ import argparse
 import hashlib
 import io
 import json
+import math
 import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import struct
+import sys
 import tempfile
 import time
+import uuid
 import zlib
 from datetime import datetime, timezone
 
 SCHEMA = 1
 PRIVATE = {".agents", ".git", ".codex", ".aws"}
 ADAPTERS = {"unittest", "love", "smoke", "images", "docs"}
+NATIVE_TIMEOUTS = {"regression": 180, "focused": 60, "smoke": 30, "captures": 60}
 
 
 class EvidenceError(ValueError):
@@ -99,6 +103,35 @@ def guard_snapshot(guards):
 def positive(value, name):
     if type(value) is not int or value < 1:
         raise EvidenceError(f"{name} must be a positive integer")
+
+
+def native_settings(root, check):
+    """Resolve a declared runtime entry and its distinct verification cwd."""
+    native = check.get("native", {})
+    mode = native.get("mode")
+    if mode not in NATIVE_TIMEOUTS:
+        raise EvidenceError("unsupported native mode")
+    candidate = local(root, native.get("candidate"))
+    entry = local(root, native.get("entry", native["candidate"]))
+    if not candidate.is_dir() or not entry.is_dir():
+        raise EvidenceError("native candidate and entry must be existing directories")
+    if not entry.is_relative_to(candidate):
+        raise EvidenceError("native entry must stay inside its candidate")
+    engine = Path(native.get("engine", ""))
+    if not engine.is_absolute() or not engine.is_file():
+        raise EvidenceError("native engine must be an explicit existing absolute executable")
+    timeout = native.get("timeoutSeconds", NATIVE_TIMEOUTS[mode])
+    if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not math.isfinite(timeout) or not 0 < timeout <= 3600:
+        raise EvidenceError("native timeout must be finite and between zero and 3600 seconds")
+    flag = {"regression": "--test", "smoke": "--smoke", "captures": "--capture"}.get(mode)
+    command = [str(engine.resolve()), str(entry)] + ([flag] if flag else [])
+    return command, candidate, timeout
+
+
+def expected_suites(check):
+    if check.get("native", {}).get("mode") == "regression":
+        return ["core", "session", "integration"]
+    return check.get("expectedSuites")
 
 
 def png_size(path):
@@ -180,6 +213,27 @@ def preflight(root, plan):
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", key) or check.get("adapter") not in ADAPTERS:
             raise EvidenceError("invalid check ID or adapter")
         positive(check.get("minimumCount"), "minimumCount")
+        if "expectedSuites" in check:
+            suites = check["expectedSuites"]
+            if (not isinstance(suites, list) or not suites or any(not isinstance(s, str) or not re.fullmatch(r"[a-z][a-z0-9-]*", s) for s in suites)
+                    or len(suites) != len(set(suites))):
+                raise EvidenceError("invalid expected suite names")
+        if "native" in check:
+            _, _, _ = native_settings(root, check)
+            entry = local(root, check["native"].get("entry", check["native"]["candidate"]))
+            main = (entry / "main.lua").relative_to(Path(root).resolve()).as_posix()
+            if main not in files:
+                raise EvidenceError("native entry main.lua must be in the frozen candidate")
+            conf = (entry / "conf.lua").relative_to(Path(root).resolve()).as_posix()
+            if (entry / "conf.lua").exists() and conf not in files:
+                raise EvidenceError("native entry conf.lua must be in the frozen candidate")
+            expected_adapter = {"regression": "love", "focused": "love", "smoke": "smoke", "captures": "images"}[check["native"]["mode"]]
+            if check["adapter"] != expected_adapter:
+                raise EvidenceError("native mode and check adapter differ")
+            if check["native"]["mode"] == "focused" and not check.get("expectedSuites"):
+                raise EvidenceError("focused native check needs its expected suite names")
+            if check["native"]["mode"] == "regression" and "expectedSuites" in check and set(check["expectedSuites"]) != {"core", "session", "integration"}:
+                raise EvidenceError("regression must include all three suites")
         names = check.get("expectedNames", [])
         if not isinstance(names, list) or any(not isinstance(n, str) or not n for n in names) or len(set(names)) != len(names):
             raise EvidenceError("invalid or duplicate expected test names")
@@ -270,7 +324,8 @@ def current(record):
         raise EvidenceError("input/actor acknowledgement drift")
 
 
-def parse_output(adapter, output):
+def parse_output(adapter, output, expected_suite_names=None):
+    suite_results, output_format = [], "legacy"
     if adapter == "unittest":
         names = re.findall(r"^(test\w+)\s+\([^\r\n]+\)\s+\.\.\.\s+ok\s*$", output, re.M)
         summaries = re.findall(r"^Ran (\d+) tests? in", output, re.M)
@@ -278,9 +333,50 @@ def parse_output(adapter, output):
         complete = bool(re.search(r"^OK\s*$", output, re.M)) and count == len(names)
     elif adapter == "love":
         names = [n.strip() for n in re.findall(r"^PASS (.+)$", output, re.M) if not n.startswith("all ")]
-        counts = [int(n) for n in re.findall(r"^PASS all (\d+) \w+ tests\s*$", output, re.M)]
+        legacy = [(suite, int(total), 0) for total, suite in re.findall(r"^PASS all (\d+) (\w+) tests\s*$", output, re.M)]
+        session_summaries = re.findall(r"^(\d+) tests, (\d+) failures\s*$", output, re.M)
+        legacy.extend(("session", int(total), int(failed)) for total, failed in session_summaries)
+        structured = re.findall(r"^WORKFLOW SUITE (.*)$", output, re.M)
+        valid = True
+        if structured:
+            output_format = "workflow-suite-v1"
+            for raw in structured:
+                try:
+                    row = json.loads(raw)
+                    if (type(row.get("schemaVersion")) is not int or row.get("schemaVersion") != 1 or not isinstance(row.get("suite"), str)
+                            or not re.fullmatch(r"[a-z][a-z0-9-]*", row["suite"])
+                            or type(row.get("count")) is not int or row["count"] < 1
+                            or type(row.get("failures")) is not int or row["failures"] < 0):
+                        valid = False
+                    else:
+                        suite_results.append(row)
+                except (ValueError, AttributeError, TypeError):
+                    valid = False
+            valid = valid and not legacy
+            # Each summary closes its actual preceding PASS/FAIL lines. Checking
+            # only a grand total would allow two suites' counts to be swapped.
+            pending, index = 0, 0
+            for line in output.splitlines():
+                if re.match(r"^PASS (?!all )", line) or re.match(r"^FAIL\b", line):
+                    pending += 1
+                elif line.startswith("WORKFLOW SUITE "):
+                    if index >= len(suite_results) or suite_results[index]["count"] != pending:
+                        valid = False
+                    pending, index = 0, index + 1
+            valid = valid and pending == 0
+            required = expected_suite_names if expected_suite_names is not None else ["core", "session", "integration"]
+            valid = valid and {r["suite"] for r in suite_results} == set(required)
+        else:
+            suite_results = [{"schemaVersion": 1, "suite": suite, "count": total, "failures": failed}
+                             for suite, total, failed in legacy]
         count = len(names)
-        complete = sum(counts) == count and "TEST SUITE: 0 file failures" in output
+        complete = (valid and count > 0 and sum(r["count"] for r in suite_results) == count
+                    and len(names) == len(set(names))
+                    and len({r["suite"] for r in suite_results}) == len(suite_results)
+                    and all(r["failures"] == 0 for r in suite_results)
+                    and re.findall(r"^TEST SUITE: (\d+) file failures\s*$", output, re.M) == ["0"])
+        if expected_suite_names is not None:
+            complete = complete and {r["suite"] for r in suite_results} == set(expected_suite_names)
     elif adapter == "smoke":
         names = []
         count = len(re.findall(r"^SMOKE PASS\b", output, re.M))
@@ -294,32 +390,50 @@ def parse_output(adapter, output):
         names, count = [], 0
         complete = bool(re.search(r"^CAPTURE PASS\b", output, re.M))
     failures = bool(re.search(r"^(FAIL\b|ERROR\b|FAILED\b|TEST SUITE: [1-9]\d* file failures)", output, re.M))
-    return {"names": names, "actualCount": count, "complete": complete and not failures}
+    return {"resultSchemaVersion": 1, "adapter": adapter, "outputFormat": output_format,
+            "suiteResults": suite_results, "names": names, "actualCount": count, "complete": complete and not failures}
 
 
-def execute(record_path, check_id, command, timeout=60):
+def execute(record_path, check_id, command, timeout=60, working_directory=None, native=False):
     record = load(record_path)
     current(record)
     spec = record["plan"]["checks"].get(check_id)
-    if not spec or not command or timeout <= 0:
+    if (not spec or not command or isinstance(timeout, bool) or not isinstance(timeout, (int, float))
+            or not math.isfinite(timeout) or not 0 < timeout <= 3600):
         raise EvidenceError("unknown check, missing command or invalid timeout")
     root = Path(record["root"])
+    if "native" in spec and not native:
+        raise EvidenceError("declared native check must use the native subcommand")
+    cwd = root if working_directory is None else Path(working_directory).resolve()
+    if not cwd.is_relative_to(root.resolve()) or not cwd.is_dir():
+        raise EvidenceError("execution cwd must stay inside the evidence root")
     number = len(record["attempts"]) + 1
-    evidence = Path(record_path).parent / "raw"
-    evidence.mkdir(exist_ok=True)
     artifacts = spec.get("artifacts", [])
     # A stale image must never count, even when its contents would be identical.
     if any(local(root, p).exists() for p in artifacts):
         raise EvidenceError("capture output already exists; choose fresh artifact paths")
+    evidence = Path(record_path).parent / "raw" / record["plan"]["runId"] / record["identity"] / f"{number:02d}-{check_id}-{uuid.uuid4().hex}"
+    evidence.mkdir(parents=True, exist_ok=False)
     attempt = {"check": check_id, "number": number, "identity": record["identity"],
                "runId": record["plan"]["runId"], "command": command, "startedUtc": utc(),
                "exitCode": None, "timedOut": False, "error": None, "PASS": False}
+    attempt.update(workingDirectory=str(cwd), timeoutSeconds=timeout)
+    attempt["environment"] = {"PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+    if native:
+        declared_command, declared_cwd, declared_timeout = native_settings(root, spec)
+        if command != declared_command or cwd != declared_cwd or timeout != declared_timeout:
+            raise EvidenceError("native execution differs from its frozen settings")
+        attempt["nativeExecution"] = {"mode": spec["native"]["mode"], "candidate": str(cwd),
+                                      "entry": command[1], "engine": command[0],
+                                      "engineFingerprint": fingerprint(command[0])}
     record["attempts"].append(attempt)
     record["review"] = None
     save(record_path, record)  # A crash leaves an incomplete attempt, never PASS.
     start = time.perf_counter()
     try:
-        process = subprocess.run(command, cwd=root, capture_output=True, timeout=timeout, shell=False)
+        environment = os.environ.copy()
+        environment.update(PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
+        process = subprocess.run(command, cwd=cwd, capture_output=True, timeout=timeout, shell=False, env=environment)
         stdout, stderr = process.stdout, process.stderr
         attempt["exitCode"] = process.returncode
     except subprocess.TimeoutExpired as exc:
@@ -329,10 +443,11 @@ def execute(record_path, check_id, command, timeout=60):
         stdout, stderr = b"", b""
         attempt["error"] = str(exc)
     for label, raw in (("stdout", stdout), ("stderr", stderr)):
-        path = evidence / f"{number:02d}-{check_id}.{label}.log"
-        path.write_bytes(raw)
+        path = evidence / f"{label}.log"
+        with path.open("xb") as stream:
+            stream.write(raw)
         attempt[label] = {"path": str(path.resolve()), **fingerprint(path), "bytes": len(raw)}
-    observed = parse_output(spec["adapter"], (stdout + b"\n" + stderr).decode("utf-8", errors="replace"))
+    observed = parse_output(spec["adapter"], (stdout + b"\n" + stderr).decode("utf-8", errors="replace"), expected_suites(spec))
     captured = {p: fingerprint(local(root, p)) for p in artifacts}
     if spec["adapter"] == "images":
         observed["actualCount"] = sum(row["exists"] for row in captured.values())
@@ -344,6 +459,8 @@ def execute(record_path, check_id, command, timeout=60):
     attempt.update(observed, artifacts=captured, completedUtc=utc(), durationSeconds=time.perf_counter() - start)
     try:
         current(record)
+        if native and fingerprint(command[0]) != attempt["nativeExecution"]["engineFingerprint"]:
+            raise EvidenceError("native engine changed during execution")
         unchanged = True
     except (EvidenceError, OSError) as exc:
         unchanged = False
@@ -357,8 +474,26 @@ def execute(record_path, check_id, command, timeout=60):
     return attempt
 
 
+def execute_native(record_path, check_id):
+    record = load(record_path)
+    current(record)
+    spec = record["plan"]["checks"].get(check_id)
+    if not spec or "native" not in spec:
+        raise EvidenceError("native check configuration missing")
+    command, cwd, timeout = native_settings(record["root"], spec)
+    return execute(record_path, check_id, command, timeout, cwd, native=True)
+
+
 def validated_attempt(record, attempt):
     spec = record["plan"]["checks"][attempt["check"]]
+    if "native" in spec:
+        command, cwd, timeout = native_settings(record["root"], spec)
+        expected_native = {"mode": spec["native"]["mode"], "candidate": str(cwd), "entry": command[1],
+                           "engine": command[0], "engineFingerprint": fingerprint(command[0])}
+        if (attempt.get("command") != command or attempt.get("workingDirectory") != str(cwd)
+                or attempt.get("timeoutSeconds") != timeout or attempt.get("nativeExecution") != expected_native
+                or attempt.get("environment") != {"PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}):
+            raise EvidenceError("native execution settings or engine drift")
     raws = []
     for label in ("stdout", "stderr"):
         row = attempt[label]
@@ -366,7 +501,7 @@ def validated_attempt(record, attempt):
         if fingerprint(path) != {"exists": row["exists"], "sha256": row["sha256"]}:
             raise EvidenceError("raw evidence drift")
         raws.append(path.read_bytes())
-    observed = parse_output(spec["adapter"], b"\n".join(raws).decode("utf-8", errors="replace"))
+    observed = parse_output(spec["adapter"], b"\n".join(raws).decode("utf-8", errors="replace"), expected_suites(spec))
     if spec["adapter"] == "images":
         if set(attempt["artifacts"]) != set(spec["artifacts"]):
             raise EvidenceError("capture coverage changed")
@@ -477,15 +612,20 @@ def render(record_path, destination):
 
 
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="action", required=True)
     init = sub.add_parser("init")
     init.add_argument("--root", required=True, type=Path)
     init.add_argument("--plan", required=True, type=Path)
     init.add_argument("--record", required=True, type=Path)
-    for name in ("check", "review", "report", "validate", "stage"):
+    for name in ("check", "native", "review", "report", "validate", "stage"):
         command = sub.add_parser(name)
         command.add_argument("--record", required=True, type=Path)
+        if name == "native":
+            command.add_argument("--id", required=True)
         if name == "check":
             command.add_argument("--id", required=True)
             command.add_argument("--timeout", type=float, default=60)
@@ -505,6 +645,8 @@ def main():
         elif args.action == "check":
             command = args.command[1:] if args.command[:1] == ["--"] else args.command
             result = execute(args.record, args.id, command, args.timeout)
+        elif args.action == "native":
+            result = execute_native(args.record, args.id)
         elif args.action == "review":
             result = accept_review(args.record, args.result)
             result = {"PASS": True, "independentReviewAccepted": True}

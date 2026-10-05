@@ -49,3 +49,11 @@ implemented-source: 사용자 ‘모두 개선해줘’에 따라 공통 실행 
 core/session/integration의 완료 출력은 WORKFLOW SUITE JSON schemaVersion=1로 통일했다. suite별 실제 수·실패 수·누락/중복·구형 결과 혼합과 TEST SUITE 종료를 함께 확인하며 역사 로그의 기존 읽기는 유지한다. raw는 run/candidate/attempt UUID별 새 폴더·배타 생성 파일에 저장하여 다른 record의 같은 후보·번호와 충돌하지 않는다. 같은 record는 한 작성자가 순차 갱신한다. 검사 소스 (`planning/tools/test_workflow_evidence.py` · 현재 로컬 계약/오버레이·이번 공개 제외)와 실행 증거 (`planning/workflow-runs/workflow-improvement-20261002/execution-tools-r3/evidence.json` · 로컬 전용·이번 공개 제외)에서 반례·실제 subprocess·현재 LÖVE suite를 확인한다. 검사별 timeout은 대기시간/성능 목표가 아니며 준비 수리에 전체 suite를 반복 요구하지 않는다.
 
 앞의 ‘M16 미검증·게임 중단’ 문장은 이전 개선 revision 당시 상태다. M16은 별도 세션의 사용자 재개 권한으로 해당 완료 기록 (`planning/workflow-runs/m16-unlock-20261002/result.md` · 로컬 전용·이번 공개 제외)에 반영됐다. 이번 도구 개선은 그 제품 후보를 보존하며 후속 기능·백로그를 진행하지 않는다. 게임 화면·입력·저장 동작을 바꾸지 않아 UI capture는 근거 있는 비적용이다. 실제 작업 소요시간 절감은 아직 측정하지 않았다.
+
+## 운영 관측 개선 후보 · 2026-10-05
+
+[운영 지침](../planning/workflow-operations.md)과 [읽기 전용 도구](../planning/tools/workflow_support.py)는 현재 단일 원장의 check별 최신 시도·미실행·raw/candidate drift·review 적용성을 표시한다. 이전 PASS는 최신 FAIL을 가리지 않는다. ID 배열의 정확한 집합 비교는 누락/추가/중복/타입/empty를 구분하며 identity만 검증한다. semantics·runtime·게임 완료는 독립 검토 범위다. inspector는 필요한 dot field와 truncation을 표시한다. 기존 run checkpoint/actor ACK의 실제 시작과 stage를 연결하며 pre-init 누락은 미측정이다. source 복제는 위키 구조/보존 근거이며 runtime 승인 근거가 아니다. 정책·제품·공식 skills 변경0, 추가 원장/봉인/gate0이다. 후보 작성과 CLI/위키 구조 검증은 실제 raw를 소비한 뒤 판정하며 root 반영/실작업 효율은 별도 상태다.
+
+PNG 관측은 root 안의 명시 artifact bytes에 기존 png_size를 사용해 디코딩한다. PNG 손상·Pillow 부재/디코딩 오류는 unverified 원인으로 보존한다. record schema·count·exit/attempt 정수는 bool/float를 허용하지 않고 소비한 hash/type를 검증한다. review 적용성은 receipt 외에 실제 JSON의 candidate/run/evidence/actor/PASS/차단0·필수 findings·실제 image coverage를 대조하며 host 인증·게임 완료를 추론하지 않는다.
+
+보조 관측과 fixture는 기존 evidence producer의 실제 schema를 재사용한다. image target은 양의 WIDTHxHEIGHT 문자열이며 임의 배열 schema로 바꾸지 않는다. Windows actual junction/다른 OS symlink 등 호스트가 지원하는 실제 fixture로 경계를 검사하되 skip/mock PASS를 만들지 않는다.
